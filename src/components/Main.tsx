@@ -1,5 +1,7 @@
 export const Main = () => {
   return (
-    <div>Main</div>
+    <div>
+      <p>MAIN ESTOU AQUI</p>
+    </div>
   )
 }

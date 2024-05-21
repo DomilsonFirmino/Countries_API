@@ -1,8 +1,10 @@
+import { ThemeSwitcher } from "./ThemeSwitcher"
+
 export const Header = () => {
   return (
     <div>
         <div>Where in the World</div>
-        <div>DarkMode</div>
+        <ThemeSwitcher></ThemeSwitcher>
     </div>
   )
 }
