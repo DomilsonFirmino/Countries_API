@@ -12,7 +12,7 @@ function App() {
           <Routes>
             <Route element={<Layout/>}>
               <Route index element={<Main/>}/>
-              <Route path='/countrie/:id' element={<Countrie/>}/>
+              <Route path='/countrie/:id' element={<Countrie Countries={null}/>}/>
             </Route>
           </Routes>
       </CountrysContext>

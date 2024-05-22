@@ -6,62 +6,128 @@ export type User = {
     setName: Dispatch<React.SetStateAction<Theme>>
 }
 
+type translation = {
+  official: string,
+  common: string
+}
+
 export type country =  {
-    name: string,
-    topLevelDomain: string[],
-    alpha2Code: string,
-    alpha3Code: string,
+    name: {
+      comon: string,
+      official: string,
+      nativeName: {
+        [key:string]: translation
+      }
+    },
+
+    tld: string[],
+
+    cca2: string,
+
+    cca3: string,
+
+    ccn3: string,
+
+    idd: {
+      root: string,
+      suffixes: string[],
+    }
+
     callingCodes: string[],
-    capital: string,
-    altSpellings: string[],
-    subregion: string,
-    region: string,
-    population: number,
+
+    capital: string[],
+
     latlng: number[],
-    demonym: string,
+
+    capitalInfo: {
+      latlng: number[]
+    }
+
+    altSpellings: string[],
+
+    subregion: string,
+
+    region: string,
+
+    population: number,
+
+    demonyms: {
+      [key:string]: {
+        [key: string]: string,
+      }
+    },
+    
+    unMember: boolean,
+
     area: number,
-    gini?: number,
+
+    gini?: {
+      [key:string]: number
+    },
+
+    maps: {
+      googleMaps: string,
+      openStreetMaps: string
+    }
+
+    landlocked: boolean,
+
     timezones:string[],
+
     borders: string[],
-    nativeName: string,
+
+    continents: string[],
+
     numericCode: string,
+
     flags: {
       svg: string,
-      png: string
+      png: string,
+      alt: string
     },
+
+    coatofArms: {
+      png: string,
+      svg: string
+    },
+
+    startOfWeek: string,
+
     currencies:  {
-        code: string,
+      [key: string]: {
         name: string,
         symbol: string
+      }
     }[],
-    languages:
-      {
-        iso639_1: string,
-        iso639_2: string,
-        name: string,
-        nativeName: string
-      }[],
+
+    languages:{
+        [key:string]: string
+    }[],
+
     translations: {
-      br: string,
-      pt: string,
-      nl: string,
-      hr: string,
-      fa: string,
-      de: string,
-      es: string,
-      fr: string,
-      ja: string,
-      it: string,
-      hu: string
+      [key: string]: translation
     },
+
     flag: string,
+
     regionalBlocs:{
         acronym: string,
         name: string,
         otherNames?: string[]
     }[],
+
     cioc?: string,
-    independent: boolean
+
+    independent: boolean,
+
+    status: string
+
+    fifa?: string
+
+    postalCode: {
+      format: string,
+      regex: string
+    }
 }
 
 
@@ -69,8 +135,9 @@ export type InitialState = {
   Countries: country[],
   error: string,
   status: "Loading" | "Ready",
-  theme: "light" | "dark"
+  theme: "light" | "dark",
+  Filtered: country[] | country | null
 }
-export type ActionType = {type:"ADD", payload: country[]} | {type: "Error", payload: AxiosError} | {type: "CHANGETHEME"}
+export type ActionType = {type:"ADD", payload: country[]} | {type: "Error", payload: AxiosError} | {type: "CHANGETHEME"} | {type:"FILTERREG", payload: string } | {type:"FILTER", payload: string }
 
 export type Theme = "light" | "dark"

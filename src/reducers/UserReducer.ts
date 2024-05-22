@@ -1,7 +1,7 @@
 import { useReducer } from "react"
 import { useEffect } from 'react'
-import axios from 'axios'
-import { ActionType, InitialState } from "../@types/Types"
+import axios, { AxiosError } from 'axios'
+import { ActionType, InitialState, country } from "../@types/Types"
 
 function reduce (state: InitialState, action: ActionType ): InitialState {
     switch(action.type){
@@ -9,6 +9,7 @@ function reduce (state: InitialState, action: ActionType ): InitialState {
             return {
                 ...state,
                 Countries: action.payload,
+                Filtered: action.payload,
                 status: "Ready"
             }
         case "Error":
@@ -22,6 +23,32 @@ function reduce (state: InitialState, action: ActionType ): InitialState {
                 ...state,
                 theme: state.theme == "light" ? "dark": "light"
             }
+        case "FILTERREG":
+            const FilterReg = state.Countries.filter( item =>  item.region.toLowerCase() === action.payload.toLowerCase())
+            if(action.payload == "none"){
+                return{
+                    ...state,
+                    Filtered: state.Countries
+                }
+            }else{
+                return{
+                    ...state,
+                    Filtered: FilterReg,
+                }
+            }
+        case "FILTER":
+            const Filter = state.Countries.filter( item =>  item.name.official?.toLowerCase().includes(action.payload.toLowerCase()))
+            if(action.payload == ""){
+                return{
+                    ...state,
+                    Filtered: state.Countries
+                }
+            }else{
+                return{
+                    ...state,
+                    Filtered: Filter,
+                }
+            }
         default:
             return state 
     }
@@ -31,21 +58,25 @@ const initialState: InitialState = {
     Countries: [],
     error: "",
     status: "Loading",
-    theme: "light"
+    theme: "light",
+    Filtered: []
 }
 export const UseReducer = () => {
   
     const [state, dispatch] = useReducer(reduce,initialState)
 
-    useEffect(()=>{
-        axios.get("https://")
-        .then(response => {
-            dispatch({type: "ADD", payload: response.data})
-        })
-        .catch( error => {
-            dispatch({type: "Error", payload: error})
-        })
-
-    },[])
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get<country[]>("https://restcountries.com/v3.1/all");
+                dispatch({ type: "ADD", payload: response.data });
+            } catch (error) {
+                const e = error as AxiosError
+                dispatch({ type: "Error", payload: e });
+            }
+        };
+    
+        fetchData();
+    }, []);
     return {state,dispatch}
 }

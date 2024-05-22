@@ -1,7 +1,9 @@
+import { CountriesList } from "./CountriesList"
+
 export const Main = () => {
   return (
     <div>
-      <p>MAIN ESTOU AQUI</p>
+      <CountriesList></CountriesList>
     </div>
   )
 }

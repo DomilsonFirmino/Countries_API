@@ -1,14 +1,14 @@
 import { useNavigate, useParams } from "react-router-dom"
+import { country } from "../@types/Types"
 
-export const Countrie = () => {
+export const Countrie = ({Countries}:{Countries: country | null | undefined}) => {
     const {id} = useParams()
     const navigate = useNavigate()
     return (
-        <div>
-            <div>
-                <button onClick={()=>navigate("/")}>go back</button>
-            </div>
-            <p>Countrie: {id}</p>
+        <div onClick={()=>navigate("/")}>
+            <img src={Countries?.flags.png} alt={Countries?.name.official} />
+            <p>{Countries?.name.official}</p>
+            <p>Countrie: {Countries?.region}</p>
         </div>
     )
 }

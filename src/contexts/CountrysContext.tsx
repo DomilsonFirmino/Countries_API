@@ -1,10 +1,10 @@
 import { Dispatch, ReactNode, createContext } from "react"
-import { ActionType, InitialState } from "../@types/Types"
+import { ActionType, InitialState, country } from "../@types/Types"
 import { UseReducer } from "../reducers/UserReducer"
 
 type Props = {
   state: InitialState,
-  dispatch: Dispatch<ActionType>
+  dispatch: Dispatch<ActionType>,
 }
 export const countrys = createContext<Props | undefined>(undefined)
 
