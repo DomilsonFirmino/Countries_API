@@ -101,7 +101,7 @@ export type country =  {
     }[],
 
     languages:{
-        [key:string]: string
+      [key:string]: string
     }[],
 
     translations: {

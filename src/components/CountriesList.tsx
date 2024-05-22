@@ -2,39 +2,41 @@ import { useContext } from "react"
 import { countrys } from "../contexts/CountrysContext"
 import { Error } from "./Error"
 import { Countrie } from "./Countrie"
-import { country } from "../@types/Types"
+import CheckObject from "../utils/Functions"
 
+    
 export const CountriesList = () => {
     
     const countries = useContext(countrys)
     const state = countries?.state
-    function CheckObject(x: country | null | undefined): boolean{
-        if (typeof x === 'object' && !Array.isArray(x) && x !== null) {
-            return true
-        }
-        return false
-    }
+    
+    let empty = true
+    
+    if(Array.isArray(state?.Filtered))
+        empty = state.Filtered.length == 0
+
     return (
-        <>
+        <div className="container">
             {state?.status == "Loading" && <p>Carregando</p>}
-            
-            {
-                <>
-                    <button onClick={()=>countries?.dispatch({type:"FILTERREG",payload:"Europe"})}>FiltrarAsia</button>
-                    <button onClick={()=>countries?.dispatch({type:"FILTERREG", payload: "none"})}>RemoverFiltro</button>
-                </>
-            }
             {
             (state?.error !== "" && state?.status=="Ready")
                 ?<Error erro={state?.error}></Error>
-                :<ul>
+                :<ul style={styles}>
                     {
-                        Array.isArray(state?.Filtered) ? state?.Filtered.map((count,id)=> (
+                        empty?<p>Não encontramos nada</p>:Array.isArray(state?.Filtered) ? state?.Filtered.map((count,id)=> (
                             <Countrie key={id} Countries={count}></Countrie>
                         )): CheckObject(state?.Filtered) && <Countrie key={1000} Countries={state?.Filtered}></Countrie>
                     }
                 </ul>
             }
-        </>
+        </div>
     )
+}
+
+
+const styles = {
+    padding: "2rem 0rem",
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fill, minmax(12rem, 1fr))",
+    gridGap: "2rem"
 }
