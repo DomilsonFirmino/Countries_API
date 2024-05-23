@@ -19,6 +19,8 @@ function reduce (state: InitialState, action: ActionType ): InitialState {
                 error: action.payload.message
             }
         case "CHANGETHEME":
+            localStorage.setItem("THEME",state.theme == "light" ? "dark": "light")
+            document.querySelector("body")?.setAttribute('data-theme', state.theme == "light" ? "dark": "light")
             return {
                 ...state,
                 theme: state.theme == "light" ? "dark": "light"
@@ -48,6 +50,12 @@ function reduce (state: InitialState, action: ActionType ): InitialState {
                     ...state,
                     Filtered: Filter,
                 }
+            }
+        case "THEME":
+            document.querySelector("body")?.setAttribute('data-theme', state.theme = state.theme)
+            return{
+                ...state,
+                theme: action.payload
             }
         default:
             return state 

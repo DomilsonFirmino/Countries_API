@@ -22,10 +22,10 @@ export const Filters = () => {
   return (
     <div className={`${styles.container} container`}>
       <div className="shadowBig">
-        <input style={{backgroundColor: "var(--white)", border: "transparent"}} type="text" value={search} onChange={handleChangeSearch} name="query" placeholder="Search for a country" />          
+        <input style={{backgroundColor: "var(--Background)",overflow: "hidden",border:"1px solid var(--Background)", borderRadius: ".5rem"}} type="text" value={search} onChange={handleChangeSearch} name="query" placeholder="Search for a country" />          
       </div>
       <div>
-        <select value={value} onChange={handleChange} id="countriesRegion" name="countriesRegion">
+        <select style={{backgroundColor: "var(--Background)"}} value={value} onChange={handleChange} id="countriesRegion" name="countriesRegion">
           <option value="none">Filter by region</option>
           <option value="Europe">Europe</option>
           <option value="Africa">Africa</option>

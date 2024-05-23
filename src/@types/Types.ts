@@ -6,9 +6,27 @@ export type User = {
     setName: Dispatch<React.SetStateAction<Theme>>
 }
 
-type translation = {
+export type translation = {
   official: string,
   common: string
+}
+
+export type translations = {
+  [key: string]: translation
+}
+
+export type Languague = {
+  [key:string]: string
+}
+
+export type Languagues = Languague[]
+
+
+export type currencie = {
+  [key: string]: {
+    name: string,
+    symbol: string
+  }
 }
 
 export type country =  {
@@ -93,20 +111,11 @@ export type country =  {
 
     startOfWeek: string,
 
-    currencies:  {
-      [key: string]: {
-        name: string,
-        symbol: string
-      }
-    }[],
+    currencies: currencie[],
 
-    languages:{
-      [key:string]: string
-    }[],
+    languages: Languagues,
 
-    translations: {
-      [key: string]: translation
-    },
+    translations: translations,
 
     flag: string,
 
@@ -138,6 +147,6 @@ export type InitialState = {
   theme: "light" | "dark",
   Filtered: country[] | country | null
 }
-export type ActionType = {type:"ADD", payload: country[]} | {type: "Error", payload: AxiosError} | {type: "CHANGETHEME"} | {type:"FILTERREG", payload: string } | {type:"FILTER", payload: string }
+export type ActionType = {type:"ADD", payload: country[]} | {type: "Error", payload: AxiosError} | {type: "CHANGETHEME"} | {type:"FILTERREG", payload: string } | {type:"FILTER", payload: string } | {type: "THEME", payload: Theme}
 
 export type Theme = "light" | "dark"

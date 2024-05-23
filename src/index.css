@@ -2,14 +2,32 @@
   margin: 0;
   padding: 0;
 }
+
+* {
+  color: inherit;
+}
 :root{
-  --veryLightGray: hsl(0, 0%, 98%);
-  --white: hsl(0, 0%, 100%);
-  --darkGray: rgb(133, 133, 133);
+
+  --Text: hsl(200, 15%, 8%);
+  --Input: hsl(0, 0%, 52%);
+  --Background: hsl(0, 0%, 98%);
+  --Element: hsl(0, 0%, 100%);
+
+  --fs: 1rem;
+}
+[data-theme="dark"]{
+  --Text: hsl(0, 0%, 100%);
+  --Background:hsl(207, 26%, 17%);
+  --Element: hsl(209, 23%, 22%);
 }
 button{
   border: transparent;
   background-color: transparent;
+}
+body{
+  background-color: var(--Background);
+  color: var(--Text);
+  font-size: var(--fs);
 }
 
 @media screen and (min-width: 45rem) {
@@ -18,9 +36,7 @@ button{
   }
 }
 
-body{
-  background-color: hsl(0, 0%, 98%);
-}
+
 
 img{
   display: block;

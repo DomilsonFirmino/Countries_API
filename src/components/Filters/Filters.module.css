@@ -5,6 +5,14 @@
     padding-top: 2rem;
     padding-inline: 1.5rem;
 }
+input, select{
+    outline: none;
+}
+
+input:focus-visible, select:focus-visible{
+    outline: 1px solid var(--Background);
+    border-radius: 0rem;
+}
 input{
     padding: .5rem .75rem;
 }

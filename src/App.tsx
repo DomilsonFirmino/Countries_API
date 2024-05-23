@@ -4,7 +4,6 @@ import { Main } from './components/Main'
 import { Layout } from './components/Layout'
 import { CountrysContext } from './contexts/CountrysContext'
 import { SingleCountrie } from './components/SingleCountrie'
-
 function App() {
   return (
     <>
