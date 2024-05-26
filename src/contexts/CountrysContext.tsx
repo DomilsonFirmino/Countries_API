@@ -1,5 +1,5 @@
 import { Dispatch, ReactNode, createContext } from "react"
-import { ActionType, InitialState, country } from "../@types/Types"
+import { ActionType, InitialState} from "../@types/Types"
 import { UseReducer } from "../reducers/UserReducer"
 
 type Props = {

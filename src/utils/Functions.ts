@@ -1,6 +1,6 @@
 import { Languagues, country, currencie, translations } from "../@types/Types";
 
-export function returnArray(valor: currencie){
+export function returnArray(valor: currencie[]){
     const Array =  Object.entries(valor)
     return Array
 }

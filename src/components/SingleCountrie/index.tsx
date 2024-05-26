@@ -28,12 +28,10 @@ export const SingleCountrie = () => {
         ))
     */
 
-    //console.log(returnArray(filter[0].currencies)[0][1])
+    console.log(returnArray(filter[0].currencies))
     //console.log(returnArrayN(filter[0].name.nativeName)[0][1])
     //console.log(returnArrayN(filter[0].name.nativeName)[0][1])    
-    console.log()
 }
-
     return (
         <div className={`container`}>
             <button onClick={()=>navigate(`/`)} className="Button back">Voltar</button>
@@ -57,16 +55,19 @@ export const SingleCountrie = () => {
                         <div>
                             <p> <span>Top Level Domain:</span> {filter[0].tld[0]} </p>
                             <p>
-                                <span>currencies:</span> {returnArray(filter[0].currencies).map((value,index)=>(
-                                        value[index+1].name
-                                    ))}
+                                <span>currencies:</span> 
+                                <p>{returnArray(filter[0].currencies).map((value, index) => {
+                                    return <p key={index}>{value[0]}</p>
+                                })}</p>
                             </p>
                             <div>
                                 <span>Languagues:</span>
                                 <div style={{display: "flex", gap: "1rem"}}>
-                                    {returnArrayL(filter[0].languages).map((value, index)=>(
-                                        <p key={index}>{value[1]}</p>
-                                    ))} 
+                                    {
+                                        returnArrayL(filter[0].languages).map((value,index) => {
+                                            return [ <p key={index}> {value[0]} </p> ]
+                                        })
+                                    }
                                 </div>
                             </div>
                         </div>
