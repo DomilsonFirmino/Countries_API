@@ -1,5 +1,7 @@
 import { useContext, useEffect } from "react"
 import { countrys } from "../../contexts/CountrysContext"
+import { MdDarkMode } from "react-icons/md"
+import { MdOutlineWbSunny } from "react-icons/md";
 import stlyes from "./ThemeSwitcher.module.css"
 
 export const ThemeSwitcher = () => {
@@ -19,7 +21,7 @@ export const ThemeSwitcher = () => {
     return (
         <div >
             <button className={stlyes.button} onClick={handleChangeTheme}>
-                <div>icon</div>
+                <div>{theme?.state.theme == "dark" ? <MdDarkMode></MdDarkMode> : <MdOutlineWbSunny></MdOutlineWbSunny> }</div>
                 <div>{theme?.state.theme} mode</div>
             </button>
         </div>

@@ -36,30 +36,33 @@ export const SingleCountrie = () => {
 
     return (
         <div className={`container`}>
-            <button onClick={()=>navigate(`/`)}>Voltar</button>
+            <button onClick={()=>navigate(`/`)} className="Button back">Voltar</button>
             {((searchParams.get("id") === null || filter !== undefined) && filter?.length == 0 ) && <p>Aconteceu algum erro</p>}
             {
                 filter !== undefined && filter.length > 0 && <div className={styles.cc}>
                     <div>
                         <img src={filter[0].flags.png} alt="" />
                     </div>
-                    <div>
+                    <div className="flow--1">
                         <h2>{filter[0].name.official}</h2>
+
                         <div>
-                            <p> Native Name: {returnArrayN(filter[0].name.nativeName)[1].common}</p>
-                            <p> Population: {filter[0].population}</p>
-                            <p> Region: {filter[0].region}</p>
-                            <p> Sub Region: {filter[0].subregion}</p>
-                            <p> Capital: {filter[0].capital[0]} </p>
+                            <p> <span>Native Name:</span> {returnArrayN(filter[0].name.nativeName)[1].common}</p>
+                            <p> <span>Population:</span> {filter[0].population}</p>
+                            <p> <span>Region:</span> {filter[0].region}</p>
+                            <p> <span>Sub Region:</span> {filter[0].subregion}</p>
+                            <p> <span>Capital:</span> {filter[0].capital[0]} </p>
                         </div>
+
                         <div>
-                            <p> Top Level Domain: {filter[0].tld[0]} </p>
+                            <p> <span>Top Level Domain:</span> {filter[0].tld[0]} </p>
                             <p>
-                                currencies: {returnArray(filter[0].currencies).map((value,index)=>(
+                                <span>currencies:</span> {returnArray(filter[0].currencies).map((value,index)=>(
                                         value[index+1].name
                                     ))}
                             </p>
-                            <div>Languagues:
+                            <div>
+                                <span>Languagues:</span>
                                 <div style={{display: "flex", gap: "1rem"}}>
                                     {returnArrayL(filter[0].languages).map((value, index)=>(
                                         <p key={index}>{value[1]}</p>
@@ -69,10 +72,10 @@ export const SingleCountrie = () => {
                         </div>
                         
                         <div >
-                            <p>Border Countries:</p>
-                            <div style={{display: "flex", gap: "1rem"}}>
+                            <p style={{marginBottom: "1rem"}}><span>Border Countries:</span></p>
+                            <div style={{display: "flex", gap: "1rem", flexWrap: "wrap"}}>
                                 {filter[0].borders?.map((border,index)=> (
-                                    <p key={index}>{border}</p>
+                                    <p key={index} className="Button">{border}</p>
                                 ))}
                                 {filter[0].borders === undefined && <p>Without borders</p> }
                             </div>

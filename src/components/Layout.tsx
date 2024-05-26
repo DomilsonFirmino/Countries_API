@@ -3,7 +3,7 @@ import { Header } from "./Header"
 
 export const Layout = () => {
   return (
-    <div>
+    <div style={{paddingBottom: "1rem"}}>
         <Header/> 
         <Outlet/>
     </div>

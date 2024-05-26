@@ -4,20 +4,16 @@ import { country } from "../@types/Types"
 export const Countrie = ({Countries}:{Countries: country | null | undefined}) => {
     const navigate = useNavigate()
     return (
-        <div className="shadowBig" onClick={()=>navigate(`/countrie?id=${Countries?.name.official}`)} style={{cursor: "pointer", border: "1px solid white",borderRadius: ".35rem", overflow:"hidden"}}>
-            <div>
-                <img style={img} src={Countries?.flags.png} alt={Countries?.name.official} />
+        <div className="shadowBig" onClick={()=>navigate(`/countrie?id=${Countries?.name.official}`)} style={{display: "flex", flexDirection:"column",cursor: "pointer", borderRadius: ".35rem", overflow:"hidden"}}>
+            <div style={{flex: "1"}}>
+                <img src={Countries?.flags.svg} alt={Countries?.name.official} />
             </div>
-            <div style={{padding: "1rem", backgroundColor: "var(--white)"}}>
+            <div style={{padding: "1rem", backgroundColor: "var(--Element)", flex: "1"}}>
                 <p style={{fontWeight: "bold"}}>{Countries?.name.official}</p>
-                <p>Population: {Countries?.population}</p>
-                <p>Countrie: {Countries?.region}</p>
-                <p>Capital: {Countries?.capital}</p>
+                <p><span style={{fontWeight: "bold"}}>Population: </span>{Countries?.population}</p>
+                <p><span style={{fontWeight: "bold"}}>Region: </span>{Countries?.region}</p>
+                <p><span style={{fontWeight: "bold"}}>Capital: </span>{Countries?.capital}</p>
             </div>
         </div>
     )
-}
-
-const img = {
-    aspectRatio: "2/1",
 }

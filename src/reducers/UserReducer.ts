@@ -30,6 +30,7 @@ function reduce (state: InitialState, action: ActionType ): InitialState {
             if(action.payload == "none"){
                 return{
                     ...state,
+                    status: "Ready",
                     Filtered: state.Countries
                 }
             }else{
@@ -69,22 +70,33 @@ const initialState: InitialState = {
     theme: "light",
     Filtered: []
 }
+const loadJSON = (key: string): country[] | null => {
+    const storedData = localStorage.getItem(key);
+    return storedData ? JSON.parse(storedData) : null;
+};
+
 export const UseReducer = () => {
   
     const [state, dispatch] = useReducer(reduce,initialState)
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get<country[]>("https://restcountries.com/v3.1/all");
-                dispatch({ type: "ADD", payload: response.data });
-            } catch (error) {
-                const e = error as AxiosError
-                dispatch({ type: "Error", payload: e });
-            }
-        };
-    
-        fetchData();
+        const savedData = loadJSON("COUNTRY")
+        if( savedData)
+            dispatch({type: "ADD", payload: savedData})
+        else
+            fetchData();
     }, []);
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get<country[]>("https://restcountries.com/v3.1/all");
+            dispatch({ type: "ADD", payload: response.data });
+            localStorage.setItem("COUNTRY", JSON.stringify(response.data))
+        } catch (error) {
+            const e = error as AxiosError
+            dispatch({ type: "Error", payload: e });
+        }
+    };
+    
     return {state,dispatch}
 }

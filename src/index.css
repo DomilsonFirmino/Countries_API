@@ -1,18 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+
+.nunito-sans-400 {
+  font-family: "Nunito Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100,
+    "YTLC" 500;
+}
+
 *, *::before, *::after{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
 
 * {
   color: inherit;
+  transition: all 10ms ease;
 }
 :root{
 
   --Text: hsl(200, 15%, 8%);
   --Input: hsl(0, 0%, 52%);
-  --Background: hsl(0, 0%, 98%);
+  --Background: hsl(0, 11%, 95%);
   --Element: hsl(0, 0%, 100%);
 
+  --ff-400: "Nunito Sans", sans-serif;
   --fs: 1rem;
 }
 [data-theme="dark"]{
@@ -28,15 +45,14 @@ body{
   background-color: var(--Background);
   color: var(--Text);
   font-size: var(--fs);
+  font-family: var(--ff-400);
+  line-height: 1.1;
 }
-
 @media screen and (min-width: 45rem) {
   html, body, #root{
     height: 100%;
   }
 }
-
-
 
 img{
   display: block;
@@ -56,4 +72,21 @@ img{
   box-shadow: 0px 0px 8px -2px rgba(133,133,133,0.75);
   -webkit-box-shadow: 0px 0px 8px -2px rgba(133,133,133,0.75);
   -moz-box-shadow: 0px 0px 8px -2px rgba(133,133,133,0.75);
+}
+.flow--1 > * + *{
+  margin-top: 1rem;
+}
+.back{
+  margin: 2rem 0;
+}
+.Button{
+  border: 1px solid var(--Background);
+  background-color: var(--Element);
+  color: var(--Text);
+  padding: .45rem 1rem;
+  border-radius: .45rem;
+  font-weight: 600;
+}
+.Element{
+  background-color: var(--Element);
 }
