@@ -12,7 +12,7 @@ function App() {
         <Routes>
           <Route path='*' element={<NFound/>}/>
           <Route element={<Layout/>}>
-            <Route path='/Countries_API' element={<Main/>}/>
+            <Route index element={<Main/>}/>
             <Route path='/countrie' element={<SingleCountrie/>}/>
           </Route>
         </Routes>

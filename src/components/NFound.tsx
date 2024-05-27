@@ -6,7 +6,7 @@ export const NFound = () => {
     return (
     <div style={{display: "grid",height: "100%",placeContent: "center"}}>
         <h1 style={{padding: "2rem"}}>404 - NOT FOUND</h1>
-        <button className="Button" onClick={()=>navigate("/Countries_API")}>
+        <button className="Button" onClick={()=>navigate("/")}>
             <FaArrowLeft ></FaArrowLeft> voltar
         </button>
     </div>
