@@ -34,7 +34,7 @@ export const SingleCountrie = () => {
 }
     return (
         <div className={`container`}>
-            <button onClick={()=>navigate(`/`)} className="Button back">Voltar</button>
+            <button onClick={()=>navigate(`/Countries_API`)} className="Button back">Voltar</button>
             {((searchParams.get("id") === null || filter !== undefined) && filter?.length == 0 ) && <p>Aconteceu algum erro</p>}
             {
                 filter !== undefined && filter.length > 0 && <div className={styles.cc}>
