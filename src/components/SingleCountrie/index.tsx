@@ -12,26 +12,7 @@ export const SingleCountrie = () => {
     const state = countries?.state
     const navigate = useNavigate()
     const filter = state?.Countries.filter(item => item.name.official === searchParams.get("id"))     
-
-    if(filter !== undefined && filter !== null && filter.length != 0){
-    /*
-        returnArray(filter[0].currencies).map((value)=>(
-            console.log(value[0])
-            //valor na primeira posição console.log(value[1].name)
-        ))
-
-        returnArrayN(filter[0].name.nativeName).map((value)=>(
-            //console.log(value[0])
-            //valor na primeira posição 
-            //console.log(value[1].common)
-            console.log(value)
-        ))
-    */
-
-    console.log(returnArray(filter[0].currencies))
-    //console.log(returnArrayN(filter[0].name.nativeName)[0][1])
-    //console.log(returnArrayN(filter[0].name.nativeName)[0][1])    
-}
+ 
     return (
         <div className={`container`}>
             <button onClick={()=>navigate(`/Countries_API/`)} className="Button back">Voltar</button>
@@ -41,6 +22,8 @@ export const SingleCountrie = () => {
                     <div>
                         <img src={filter[0].flags.png} alt="" />
                     </div>
+                    
+
                     <div className="flow--1">
                         <h2>{filter[0].name.official}</h2>
 
@@ -52,14 +35,16 @@ export const SingleCountrie = () => {
                             <p> <span>Capital:</span> {filter[0].capital[0]} </p>
                         </div>
 
+
+
                         <div>
                             <p> <span>Top Level Domain:</span> {filter[0].tld[0]} </p>
-                            <p>
+                            <div>
                                 <span>currencies:</span> 
-                                <p>{returnArray(filter[0].currencies).map((value, index) => {
+                                {returnArray(filter[0].currencies).map((value, index) => {
                                     return <p key={index}>{value[0]}</p>
-                                })}</p>
-                            </p>
+                                })}
+                            </div>
                             <div>
                                 <span>Languagues:</span>
                                 <div style={{display: "flex", gap: "1rem"}}>

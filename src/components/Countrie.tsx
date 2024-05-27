@@ -4,7 +4,7 @@ import { country } from "../@types/Types"
 export const Countrie = ({Countries}:{Countries: country | null | undefined}) => {
     const navigate = useNavigate()
     return (
-        <div className="shadowBig" onClick={()=>navigate(`/countrie?id=${Countries?.name.official}`)} style={{display: "flex", flexDirection:"column",cursor: "pointer", borderRadius: ".35rem", overflow:"hidden"}}>
+        <div className="shadowBig" onClick={()=>navigate(`countrie?id=${Countries?.name.official}`)} style={{display: "flex", flexDirection:"column",cursor: "pointer", borderRadius: ".35rem", overflow:"hidden"}}>
             <div style={{flex: "1"}}>
                 <img src={Countries?.flags.svg} alt={Countries?.name.official} />
             </div>

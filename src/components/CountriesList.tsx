@@ -23,7 +23,7 @@ export const CountriesList = () => {
                 ?<Error erro={state?.error}></Error>
                 :<ul style={styles}>
                     {
-                        empty?<p>Não encontramos nada</p>:Array.isArray(state?.Filtered) ? state?.Filtered.map((count,id)=> (
+                        empty && state?.status == "Ready"?<p>Não encontramos nada</p>:Array.isArray(state?.Filtered) ? state?.Filtered.map((count,id)=> (
                             <Countrie key={id} Countries={count}></Countrie>
                         )): CheckObject(state?.Filtered) && <Countrie key={1000} Countries={state?.Filtered}></Countrie>
                     }

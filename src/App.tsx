@@ -11,9 +11,9 @@ function App() {
     <CountrysContext>
         <Routes>
           <Route path='*' element={<NFound/>}/>
-          <Route path='/Countries_API/' element={<Layout/>}>
+          <Route path='/Countries_API' element={<Layout/>}>
             <Route index element={<Main/>}/>
-            <Route path='/countrie' element={<SingleCountrie/>}/>
+            <Route path='countrie' element={<SingleCountrie/>}/>
           </Route>
         </Routes>
       </CountrysContext>
