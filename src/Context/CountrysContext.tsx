@@ -35,7 +35,6 @@ export const CountrysProvider = ({children}:{children: React.ReactNode}) => {
         const response = await axios.get<country[]>("https://restcountries.com/v3.1/all");
         setCountrys(response.data)
         setStatus("ready")
-        console.log(countrys)
       } catch (error) {
         const e = error as AxiosError
         setStatus("error")
