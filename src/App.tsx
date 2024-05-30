@@ -1,24 +1,33 @@
-import { Route, Routes } from 'react-router-dom'
-import './App.css'
-import { Main } from './components/Main'
-import { Layout } from './components/Layout'
-import { CountrysContext } from './contexts/CountrysContext'
-import { SingleCountrie } from './components/SingleCountrie'
-import { NFound } from './components/NFound'
-function App() {
+import { useCountrysContext } from "./Context/CountrysContext";
+import {  useThemeContext } from "./Context/ThemeContext"
+
+export default function App() {
+  
+  const {theme, setTheme } = useThemeContext()
+  const {isLoading, status, error,countrys} = useCountrysContext()
+  const TotalCountrys = Math.round(countrys.length / 20 )
+
+  const handleOnClick = () => {
+    setTheme?.(theme == "dark" ? "light" : "dark")
+  };
   return (
     <>
-    <CountrysContext>
-        <Routes>
-          <Route path='*' element={<NFound/>}/>
-          <Route path='/Countries_API' element={<Layout/>}>
-            <Route index element={<Main/>}/>
-            <Route path='countrie' element={<SingleCountrie/>}/>
-          </Route>
-        </Routes>
-      </CountrysContext>
+      <p>{theme}</p>
+      <button onClick={handleOnClick}>Aqui</button>
+      {isLoading && <p>...isLoading</p> }
+      {status == "error" && <p>{error}</p> }
+      {status == "ready"}
+
+      <div>
+        {countrys.map((value,index)=> ( index < 20 ? <p key={index}>{value.cca2}</p> :""))}
+      </div>
+
+      
+      <div style={{display: "flex"}}>
+        {Array.from({length: TotalCountrys}, (_, i) => i + 1).map((value, index) => (
+          <p key={index}>{value}</p>
+        ))}
+      </div>
     </>
   )
 }
-
-export default App
