@@ -10,8 +10,8 @@ export const Rounting = () => {
         <Route path="/Countries_API/" element={<Layout/>}>
           <Route index element={<MainContent/>} />
           <Route path='countrie' element={<SingleCountrie />}/>
+          <Route path="*" element={<ErrorPage/>} />
         </Route>
-        <Route path="*" element={<ErrorPage/>} />
     </Routes>
   )
 }
