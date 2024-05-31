@@ -7,7 +7,7 @@ export const Countrie = ({country}:{country: country}) => {
 
     const navigate = useNavigate()
     return (
-        <div onClick={()=>navigate(`countrie?id=${country.name.official}`)}>
+        <div onClick={()=>navigate(`countrie?id=${country.name.official}`)} style={{cursor: "pointer"}}>
             <div>
                 <LazyLoadImage style={{ aspectRatio: "18/11"}} src={country.flags.png} alt={country.name.official} effect="blur" placeholderSrc={PlaceholderImage} width="100%"/>
             </div>

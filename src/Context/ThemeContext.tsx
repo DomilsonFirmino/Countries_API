@@ -16,8 +16,11 @@ export const ThemeProvider = ({children}:{children: React.ReactNode}) =>{
        const ThemeAtual = (localStorage.getItem(import.meta.env.VITE_LOCAL_STORAGE_THEME_KEY))
        if(ThemeAtual == null){
             localStorage.setItem(import.meta.env.VITE_LOCAL_STORAGE_THEME_KEY,theme)
+            document.querySelector("body")?.setAttribute('data-theme', theme)
        }else{
-        setTheme(ThemeAtual == "light" ? "light": "dark")
+        const Tema = ThemeAtual == "light" ? "light" : "dark"
+        setTheme(Tema)
+        document.querySelector("body")?.setAttribute('data-theme', Tema)
        }
     },[])
 

@@ -37,6 +37,7 @@ export const CountryList = ({countrys,filterByName,filterByRegion}: Props) => {
             window.scrollTo(0,0)
         }
     }
+
     return (
         <div>
             <div style={styles}>
