@@ -19,6 +19,20 @@ const initialState:Props = {
 
 const CountrysContext = createContext(initialState)
 
+const sortOrder = (a:country, b:country) => {
+  const nameA = a.name.official.toUpperCase(); // ignore upper and lowercase
+  const nameB = b.name.official.toUpperCase(); // ignore upper and lowercase
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+
+  // names must be equal
+  return 0;
+}
+
 export const CountrysProvider = ({children}:{children: React.ReactNode}) => {
   
   const [countrys,setCountrys] = useState<country[]>([])
@@ -33,7 +47,7 @@ export const CountrysProvider = ({children}:{children: React.ReactNode}) => {
       setError("")
       try {
         const response = await axios.get<country[]>("https://restcountries.com/v3.1/all");
-        setCountrys(response.data)
+        setCountrys(response.data.sort(sortOrder))
         setStatus("ready")
       } catch (error) {
         const e = error as AxiosError
