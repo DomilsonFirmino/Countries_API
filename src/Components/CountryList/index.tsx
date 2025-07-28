@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
-import { country } from "../../@types/Types"
+import { countryType } from "../../@types/Types"
 import { Button } from "../Button"
 import { Countrie } from "../Countrie"
 
 
 type Props = {
-    countrys: country[],
+    countrys: countryType[],
     filterByName?: string,
     filterByRegion?: string
 }

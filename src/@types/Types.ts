@@ -29,97 +29,100 @@ export type currencie = {
   }
 }
 
-export type country =  {
-    name: {
-      comon: string,
-      official: string,
-      nativeName: {
-        [key:string]: translation
-      }
-    },
+export type name = {
+  comon: string,
+  official: string,
+  nativeName: {
+    [key:string]: translation
+  }
+}
 
-    tld: string[],
 
-    cca2: string,
+export type countryType =  {
+    name: name,
 
-    cca3: string,
+    tld?: string[],
 
-    ccn3: string,
+    cca2?: string,
 
-    idd: {
+    cca3?: string,
+
+    ccn3?: string,
+
+    idd?: {
       root: string,
       suffixes: string[],
     }
 
-    callingCodes: string[],
+    callingCodes?: string[],
 
     capital: string[],
 
-    latlng: number[],
+    latlng?: number[],
 
-    capitalInfo: {
+    capitalInfo?: {
       latlng: number[]
     }
 
-    altSpellings: string[],
+    altSpellings?: string[],
 
-    subregion: string,
+    subregion?: string,
 
     region: string,
 
     population: number,
 
-    demonyms: {
+    demonyms?: {
       [key:string]: {
         [key: string]: string,
       }
     },
     
-    unMember: boolean,
+    unMember?: boolean,
 
-    area: number,
+    area?: number,
 
     gini?: {
       [key:string]: number
     },
 
-    maps: {
+    maps?: {
       googleMaps: string,
       openStreetMaps: string
     }
 
-    landlocked: boolean,
+    landlocked?: boolean,
 
-    timezones:string[],
+    timezones?:string[],
 
-    borders: string[],
+    borders?: string[],
 
-    continents: string[],
+    continents?: string[],
 
-    numericCode: string,
+    numericCode?: string,
 
-    flags: {
+    flags?: {
       svg: string,
       png: string,
       alt: string
     },
 
-    coatofArms: {
+    coatofArms?: {
       png: string,
       svg: string
     },
 
-    startOfWeek: string,
+    startOfWeek?: string,
 
-    currencies: currencie[],
+    currencies?: currencie[],
 
-    languages: Languagues,
+    languages?: Languagues,
 
-    translations: translations,
+    translations?: translations,
 
-    flag: string,
+    flag?: string,
 
-    regionalBlocs:{
+    regionalBlocs?:{
         acronym: string,
         name: string,
         otherNames?: string[]
@@ -127,13 +130,13 @@ export type country =  {
 
     cioc?: string,
 
-    independent: boolean,
+    independent?: boolean,
 
-    status: string
+    status?: string
 
     fifa?: string
 
-    postalCode: {
+    postalCode?: {
       format: string,
       regex: string
     }
@@ -141,12 +144,13 @@ export type country =  {
 
 
 export type InitialState = {
-  Countries: country[],
+  Countries: countryType[],
   error: string,
   status: "Loading" | "Ready",
   theme: "light" | "dark",
-  Filtered: country[] | country | null
+  Filtered: countryType[] | countryType | null
 }
-export type ActionType = {type:"ADD", payload: country[]} | {type: "Error", payload: AxiosError} | {type: "CHANGETHEME"} | {type:"FILTERREG", payload: string } | {type:"FILTER", payload: string } | {type: "THEME", payload: Theme}
+
+export type ActionType = {type:"ADD", payload: countryType[]} | {type: "Error", payload: AxiosError} | {type: "CHANGETHEME"} | {type:"FILTERREG", payload: string } | {type:"FILTER", payload: string } | {type: "THEME", payload: Theme}
 
 export type Theme = "light" | "dark"

@@ -4,16 +4,15 @@ this is a solution to the [REST Countries API with color theme switcher challeng
 
 ![Design preview for the REST Countries API with color theme switcher coding challenge](./design/desktop-preview.jpg)
 
-
 # Table of contents
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
   - [Links](#links)
+  - [Instalation](#Instalation)
 - [My process](#my-process)
   - [Built with](#built-with)
 - [Author](#author)
-
 
 ## Overview
 
@@ -26,7 +25,7 @@ Users should be able to:
 - Filter countries by region
 - Click on a country to see more detailed information on a separate page
 - Click through to the border countries on the detail page
-- Toggle the color scheme between light and dark mode *(optional)*
+- Toggle the color scheme between light and dark mode _(optional)_
 
 ### Screenshot
 
@@ -34,7 +33,7 @@ Users should be able to:
 
 Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
 
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
+Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it.
 
 Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
 
@@ -45,6 +44,29 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - Solution URL: [Country_API](https://github.com/DomilsonFirmino/Countries_API)
 - Live Site URL: [Countries](https://domilsonfirmino.github.io/Countries_API/)
 
+### Instalation
+
+Para baixar e rodar este projeto localmente:
+
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/DomilsonFirmino/Countries_API.git
+   ```
+2. **Acesse a pasta do projeto:**
+   ```bash
+   cd Countries_API
+   ```
+3. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
+4. **Inicie o servidor de desenvolvimento:**
+   ```bash
+   npm run dev
+   ```
+5. Abra o navegador e acesse o endereço exibido no terminal (geralmente http://localhost:5173).
+
+Pronto! O projeto estará rodando localmente.
 
 ## My process
 

@@ -10,14 +10,14 @@ export const SingleCountrie = () => {
     const navigate = useNavigate()
     const [searchParams] = useSearchParams()
     const country = countrys.find((item)=>item.name.official.toLowerCase() == searchParams.get("id")?.toLowerCase())
-
+    console.log(country)
     return (
         <div className='container'>
             
             <button onClick={()=>navigate(`/Countries_API/`)} className="Button back">Voltar</button>
             <div className={`"flow--1" ${styles.cc}`} >
                 <div>
-                    <LazyLoadImage src={country?.flags.png} alt={country?.name.official} effect="blur" placeholderSrc={PlaceholderImage} width={"100%"}/>
+                    {country?.flags && <LazyLoadImage src={country?.flags.png} alt={country?.flags?.alt} effect="blur" placeholderSrc={PlaceholderImage} width={"100%"}/> }
                 </div>
                 
                 <div className='flow--2'>
@@ -31,7 +31,7 @@ export const SingleCountrie = () => {
                     </div>
                     
                     <div className='flow--0'>
-                        <p> <span>Top Level Domain:</span> {country?.tld[0]} </p>
+                        {/* <p> <span>Top Level Domain:</span> {country?.tld[0]} </p> */}
                         <div className='flow--0'>
                             <p style={{fontWeight: "bold"}}>currencies:</p>
                             <div>
@@ -57,10 +57,9 @@ export const SingleCountrie = () => {
                     <div className='flow--0'>
                         <p><span style={{fontWeight: "bold"}}>Border Countries:</span></p>
                         <div style={{display: "flex", flexWrap: "wrap"}}>
-                            {country?.borders?.map((border,index)=> (
+                            {country?.borders && country?.borders.length == 0 ? "Without Borders" : country?.borders?.map((border,index)=> (
                                 <p key={index} className="Button">{border}</p>
                             ))}
-                            {country?.borders === undefined && <p>Without borders</p> }
                         </div>
                     </div>
 
