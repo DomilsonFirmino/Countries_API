@@ -1,6 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { countryType } from "../@types/Types";
 import { getCountries } from "../functions/getCountries";
+import { saveCountriesToLocalStorage } from "../functions/saveCountriesToLocalStorage";
+import { retrieveCountriesFromLocalStorage } from "../functions/retrieveCountriesFromLocalStorage";
+import { DateToMinutes } from "../functions/hours";
 
 type Props = {
   countrys: countryType[];
@@ -47,21 +50,43 @@ export const CountrysProvider = ({
   useEffect(() => {
     const abort = new AbortController();
     const { signal } = abort;
+
     const FetchData = async () => {
       setIsLoading(true);
       setStatus("standby");
       setError("");
-      const { data, message, status } = await getCountries(signal);
-      if (status == "400") {
-        setError(message);
+
+      const savedCountriesData = retrieveCountriesFromLocalStorage(
+        import.meta.env.VITE_LOCAL_STORAGE_COUNTRIES_KEY
+      );
+
+      const newTime = DateToMinutes(new Date());
+
+      if (
+        !savedCountriesData ||
+        Math.abs(savedCountriesData.time - newTime) >= 5
+      ) {
+        const { data, message, status } = await getCountries(signal);
+
+        if (status == "400") {
+          setError(message);
+          setIsLoading(false);
+          setStatus("ready");
+          return;
+        }
+
         setIsLoading(false);
         setStatus("ready");
-        return;
-      }
+        setCountrys(data);
 
-      setIsLoading(false);
-      setStatus("ready");
-      setCountrys(data);
+        saveCountriesToLocalStorage(data, new Date());
+        console.log("Se cheguei aq fiz um novo fetch");
+      } else {
+        setIsLoading(false);
+        setStatus("ready");
+        setCountrys(savedCountriesData.countries);
+        console.log("Se cheguei aq, peguei do localStorage");
+      }
     };
 
     FetchData();
